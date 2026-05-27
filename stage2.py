@@ -10,9 +10,15 @@ client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 # limit to 5 calls per minute and 20 per day
 MODEL_NAME_1 = "gemini-2.5-flash"
 time_sleep_1 = 13
+
 # limit to 15 calls per minute and 500 per day
 MODEL_NAME_2 = "gemini-3.1-flash-lite"
 time_sleep_2 = 5
+
+# If you wish to use another model feel free to chage the model name and time sleep varibles uncomenting and filling the following two lines
+# MODEL_NAME_3 = 
+# time_sleep_3 = 
+# This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
 
 
 
@@ -58,5 +64,3 @@ def record_corrected_lines():
                 # Had to set a timer for the calls per minute
                 time.sleep(time_sleep_2)
     print(f"Process completed, {corrected_lines} lines corrected succesfully")
-
-record_corrected_lines()
