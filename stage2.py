@@ -33,12 +33,12 @@ def ask_gemini(transcript):
     return response.text
 
 def record_correction_row(correction, line_raw):
-    with open("data/meeting_corrected.csv", "a", newline="", encoding="utf-8") as f:
+    with open("data/meeting_corrected_mock_data.csv", "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([line_raw["timestamp"], line_raw["name"], line_raw["raw_text_vosk"], correction, line_raw["time_taken_sec"]])
 
 def csv_corrected_heading():
-    with open("data/meeting_corrected.csv", "w", newline="", encoding="utf-8") as f:
+    with open("data/meeting_corrected_mock_data.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 

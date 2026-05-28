@@ -1,0 +1,28 @@
+timestamp,name,raw_text_vosk,text,time_taken_sec
+2026-05-27T10:00:05,Marcos,hello team today we discuss mobile app growth,"Hello team, today we discuss mobile app growth.",6.2
+2026-05-27T10:00:12,Edward,thanks for setting this up edward,"Thanks for setting this up, Edward.",3.1
+2026-05-27T10:00:18,Sara,can we target students first,Can we target students first?,3.8
+2026-05-27T10:00:25,Dan,i think we need lower pricing for early users,I think we need lower pricing for early users.,5.1
+2026-05-27T10:00:32,Marcos,what kind of pricing are we talking about,What kind of pricing are we talking about?,4.2
+2026-05-27T10:00:40,Edward,maybe a freemium model with a cheap premium tier,Maybe a freemium model with a cheap premium tier.,5.4
+2026-05-27T10:00:47,Sara,a freemium model works well for the student demographic,A freemium model works well for the student demographic.,6.0
+2026-05-27T10:00:55,Dan,exactly they dont have much disposable income,"Exactly, they don't have much disposable income.",4.8
+2026-05-27T10:01:02,Marcos,we could offer a university email discount,We could offer a university email discount.,4.5
+2026-05-27T10:01:09,Edward,that is a really great idea dan,"That is a really great idea, Dan.",3.5
+2026-05-27T10:01:15,Sara,how do we actually market to them on campus,How do we actually market to them on campus?,5.2
+2026-05-27T10:01:23,Dan,we could start a campus ambassador program,We could start a campus ambassador program.,4.6
+2026-05-27T10:01:30,Marcos,or run targeted social media ads during exam season,Or run targeted social media ads during exam season.,5.8
+2026-05-27T10:01:38,Edward,paid ads might be too expensive for us right now,Paid ads might be too expensive for us right now.,5.5
+2026-05-27T10:01:45,Sara,lets stick to organic growth and word of mouth first,Let's stick to organic growth and word of mouth first.,6.1
+2026-05-27T10:01:53,Dan,campus ambassadors will cost us very little,Campus ambassadors will cost us very little.,4.3
+2026-05-27T10:02:00,Marcos,i can build a referral code system into the app settings,I can build a referral code system into the app settings.,6.4
+2026-05-27T10:02:08,Edward,perfect we give them points for every successful sign up,Perfect. We give them points for every successful sign-up.,6.0
+2026-05-27T10:02:16,Sara,what do the points actually get them,What do the points actually get them?,4.0
+2026-05-27T10:02:22,Dan,free months of the premium tier subscription,Free months of the premium tier subscription.,4.7
+2026-05-27T10:02:29,Marcos,that keeps our cash burn low while growing the user base,That keeps our cash burn low while growing the user base.,6.3
+2026-05-27T10:02:37,Edward,should we launch on ios and android at the same time,Should we launch on iOS and Android at the same time?,6.1
+2026-05-27T10:02:45,Sara,lets just focus on ios first for the initial beta test,Let's just focus on iOS first for the initial beta test.,5.9
+2026-05-27T10:02:52,Dan,most students i know use iphones anyway,Most students I know use iPhones anyway.,4.4
+2026-05-27T10:02:58,Marcos,we will save a lot of development time that way,We will save a lot of development time that way.,5.6
+2026-05-27T10:03:06,Edward,sounds good i will update the product roadmap today,Sounds good. I will update the product roadmap today.,5.7
+2026-05-27T10:03:13,Sara,great meeting everyone lets get to work and execute on this,"Great meeting, everyone! Let's get to work and execute on this.",6.5
