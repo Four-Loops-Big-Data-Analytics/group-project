@@ -4,25 +4,26 @@ import os
 INPUT_FILE = "data/meeting_corrected_mock_data.csv"
 OUTPUT_FILE = "data/meeting_enriched.csv"
  
+def add_derived_columns(input_rows):
+    # Track how many turns each speaker has had so far
+    turn_counter = {}
+    output_rows = []
  
-def compute_features(rows):
-    speaker_turn_counts = {}
-    enriched = []
- 
-    for row in rows:
+    for row in input_rows:
         name = row["name"]
         text = row["text"].strip()
         time_taken = float(row["time_taken_sec"])
  
-        question_flag = text.endswith("?")
+        question_flag = True if text.endswith("?") else False
         num_words = len(text.split())
         text_size_chars = len(text)
         speech_rate_wps = round(num_words / time_taken, 2)
  
-        speaker_turn_counts[name] = speaker_turn_counts.get(name, 0) + 1
-        speaker_turn_id = speaker_turn_counts[name]
+        # Increment turn count per speaker independently
+        turn_counter[name] = turn_counter.get(name, 0) + 1
+        speaker_turn_id = turn_counter[name]
  
-        enriched.append({
+        output_rows.append({
             "timestamp":       row["timestamp"],
             "name":            name,
             "raw_text_vosk":   row["raw_text_vosk"],
@@ -35,39 +36,39 @@ def compute_features(rows):
             "speaker_turn_id": speaker_turn_id,
         })
  
-    return enriched
+    return output_rows
  
- 
-def write_enriched_csv(enriched):
+def save_to_csv(output_rows):
     os.makedirs("data", exist_ok=True)
     fieldnames = [
         "timestamp", "name", "raw_text_vosk", "text",
         "time_taken_sec", "question_flag", "num_words",
         "text_size_chars", "speech_rate_wps", "speaker_turn_id",
     ]
+    # open the file and write all rows
     with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(enriched)
+        writer.writerows(output_rows)
  
- 
-def enrich_transcript():
+def main():
     if not os.path.exists(INPUT_FILE):
         print(f"Error: '{INPUT_FILE}' not found. Make sure Stage 2 output exists.")
         return
  
     with open(INPUT_FILE, encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        rows = list(reader)
+        input_rows = list(reader)
  
-    print(f"Loaded {len(rows)} rows from '{INPUT_FILE}'.")
+    print(f"Loaded {len(input_rows)} rows from '{INPUT_FILE}'.")
  
-    enriched = compute_features(rows)
-    write_enriched_csv(enriched)
+    output_rows = add_derived_columns(input_rows)
+    total = len(output_rows)
+    save_to_csv(output_rows)
  
     print(f"Enriched CSV saved to '{OUTPUT_FILE}'.")
+    print(f"{total} rows processed.")
     print(f"Columns added: question_flag, num_words, text_size_chars, speech_rate_wps, speaker_turn_id")
  
- 
 if __name__ == "__main__":
-    enrich_transcript()
+    main()
