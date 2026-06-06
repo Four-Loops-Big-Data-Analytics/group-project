@@ -34,7 +34,6 @@ def is_numeric_and_greater_than_zero(data):
     else: 
         return False
 
-
 with open(ENRICHED_CSV, "r", newline="", encoding="utf-8") as file:
     reader = csv.DictReader(file)
     fieldnames = reader.fieldnames or []
