@@ -7,6 +7,8 @@ import time
 load_dotenv()
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
+OUTPUT_FILE = "data/meeting_corrected.csv"
+
 # limit to 5 calls per minute and 20 per day
 MODEL_NAME_1 = "gemini-2.5-flash"
 time_sleep_1 = 13
@@ -15,11 +17,10 @@ time_sleep_1 = 13
 MODEL_NAME_2 = "gemini-3.1-flash-lite"
 time_sleep_2 = 5
 
-# If you wish to use another model feel free to chage the model name and time sleep varibles uncomenting and filling the following two lines
+# If you wish to use another model feel free to change the model name and time sleep variables uncommenting and filling the following two lines
 # MODEL_NAME_3 = 
 # time_sleep_3 = 
-# This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
-
+# The variables are MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
 
 
 def ask_gemini(transcript):
@@ -33,20 +34,21 @@ def ask_gemini(transcript):
     return response.text
 
 def record_correction_row(correction, line_raw):
-    with open("data/meeting_corrected_mock_data.csv", "a", newline="", encoding="utf-8") as f:
+    with open(OUTPUT_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([line_raw["timestamp"], line_raw["name"], line_raw["raw_text_vosk"], correction, line_raw["time_taken_sec"]])
 
 def csv_corrected_heading():
-    with open("data/meeting_corrected_mock_data.csv", "w", newline="", encoding="utf-8") as f:
+    with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
-def record_corrected_lines():
+# changed so you can pass in filepath - edward
+def record_corrected_lines(filepath):
 
     csv_corrected_heading()
     
-    with open("data/meeting_raw_mock_data.csv", encoding="utf-8") as file:
+    with open(filepath, encoding="utf-8") as file:
             reader_csv = csv.DictReader(file, delimiter=',')
             count = 1
             corrected_lines = 0
@@ -55,7 +57,7 @@ def record_corrected_lines():
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
                     record_correction_row(correct_transcript, line)
-                    print(f"Line {count} corrected succesfully")
+                    print(f"Line {count} corrected successfully")
                     corrected_lines += 1
                 except Exception as e:
                     print(f"Error on row: {count}, line not corrected")
@@ -63,4 +65,4 @@ def record_corrected_lines():
                 count += 1
                 # Had to set a timer for the calls per minute
                 time.sleep(time_sleep_2)
-    print(f"Process completed, {corrected_lines} lines corrected succesfully")
+    print(f"Process completed, {corrected_lines} lines corrected successfully")
