@@ -9,7 +9,7 @@ from vosk import Model, KaldiRecognizer
 MODEL_PATH = "vosk-model-en-us-0.22-lgraph"
 SAMPLE_RATE = 16000
 RECORDINGS_FOLDER = "recordings"
-OUTPUT_FILE = "data/meeting_raw.csv"
+OUTPUT_FILE = "data/meeting_raw_mock_data.csv"
 
 
 def get_speaker_name(filename):
