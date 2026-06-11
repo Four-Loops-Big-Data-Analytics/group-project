@@ -1,28 +1,28 @@
 timestamp,name,raw_text_vosk,time_taken_sec
-2026-05-27T10:00:05,Marcos,hello team today we discuss mobile app growth,6.2
-2026-05-27T10:00:12,Edward,thanks for setting this up edward,3.1
-2026-05-27T10:00:18,Sara,can we target students first,3.8
-2026-05-27T10:00:25,Dan,i think we need lower pricing for early users,5.1
-2026-05-27T10:00:32,Marcos,what kind of pricing are we talking about,4.2
-2026-05-27T10:00:40,Edward,maybe a freemium model with a cheap premium tier,5.4
-2026-05-27T10:00:47,Sara,a freemium model works well for the student demographic,6.0
-2026-05-27T10:00:55,Dan,exactly they dont have much disposable income,4.8
-2026-05-27T10:01:02,Marcos,we could offer a university email discount,4.5
-2026-05-27T10:01:09,Edward,that is a really great idea dan,3.5
-2026-05-27T10:01:15,Sara,how do we actually market to them on campus,5.2
-2026-05-27T10:01:23,Dan,we could start a campus ambassador program,4.6
-2026-05-27T10:01:30,Marcos,or run targeted social media ads during exam season,5.8
-2026-05-27T10:01:38,Edward,paid ads might be too expensive for us right now,5.5
-2026-05-27T10:01:45,Sara,lets stick to organic growth and word of mouth first,6.1
-2026-05-27T10:01:53,Dan,campus ambassadors will cost us very little,4.3
-2026-05-27T10:02:00,Marcos,i can build a referral code system into the app settings,6.4
-2026-05-27T10:02:08,Edward,perfect we give them points for every successful sign up,6.0
-2026-05-27T10:02:16,Sara,what do the points actually get them,4.0
-2026-05-27T10:02:22,Dan,free months of the premium tier subscription,4.7
-2026-05-27T10:02:29,Marcos,that keeps our cash burn low while growing the user base,6.3
-2026-05-27T10:02:37,Edward,should we launch on ios and android at the same time,6.1
-2026-05-27T10:02:45,Sara,lets just focus on ios first for the initial beta test,5.9
-2026-05-27T10:02:52,Dan,most students i know use iphones anyway,4.4
-2026-05-27T10:02:58,Marcos,we will save a lot of development time that way,5.6
-2026-05-27T10:03:06,Edward,sounds good i will update the product roadmap today,5.7
-2026-05-27T10:03:13,Sara,great meeting everyone lets get to work and execute on this,6.5
+2026-06-11T20:01:44,Edward,hello to him today we discuss mobile app growth,4.78
+2026-06-11T20:01:49,Dan,thanks for saying this up edward,3.14
+2026-06-11T20:01:52,Aidan,can we talk to students first,2.84
+2026-06-11T20:01:55,Marcos,i think we need to lower pricing for it'll users,4.46
+2026-06-11T20:02:00,Dan,what kind of pricing are we talking about,3.56
+2026-06-11T20:02:03,Marcos,maybe up freemium model with a cheap premium tier,6.31
+2026-06-11T20:02:10,Edward,a freemium model works well for the students demographic,4.47
+2026-06-11T20:02:14,Aidan,exactly they don't have much disposable income,3.6
+2026-06-11T20:02:18,Dan,we could offer a university email discount,4.12
+2026-06-11T20:02:22,Marcos,that he's a really great idea that,4.54
+2026-06-11T20:02:26,Edward,how do we actually market to them on campus,4.01
+2026-06-11T20:02:30,Aidan,we could start a campus ambassador program,4.12
+2026-06-11T20:02:34,Dan,or run targeted social media ads during exam season,5.38
+2026-06-11T20:02:40,Marcos,paid ads might be too expensive for us right through,5.03
+2026-06-11T20:02:45,Edward,let's stick to organic growth in word of mouth first,3.75
+2026-06-11T20:02:49,Aidan,campus and buster programs will cost us very little,3.69
+2026-06-11T20:02:52,Dan,i could build referral code system into the app settings,4.74
+2026-06-11T20:02:57,Marcos,perfect we leave them points for every successful sign up,6.42
+2026-06-11T20:03:03,Edward,what do the points actually get them,3.11
+2026-06-11T20:03:06,Aidan,the mom's of the premium tier subscription,2.84
+2026-06-11T20:03:09,Marcos,that keeps our gaspar and long while growing the user base,6.59
+2026-06-11T20:03:16,Dan,should we launch an ios and android at the same time,4.65
+2026-06-11T20:03:21,Edward,let's just focus on ios first for the initial beta test,5.14
+2026-06-11T20:03:26,Aidan,most students i know use iphones anyway,3.35
+2026-06-11T20:03:29,Marcos,we will save a lot of development time that way,5.38
+2026-06-11T20:03:34,Dan,sounds good i will update the product roadmap to do,4.86
+2026-06-11T20:03:39,Edward,great meeting everyone let's get to work and execute on this,5.24

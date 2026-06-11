@@ -217,3 +217,5 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 vosk-model-en-us-0.22-lgraph/
+
+data/
