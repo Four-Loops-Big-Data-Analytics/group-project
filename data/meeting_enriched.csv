@@ -1,0 +1,6 @@
+timestamp,name,raw_text_vosk,text,time_taken_sec,question_flag,num_words,text_size_chars,speech_rate_wps,speaker_turn_id
+2026-06-11T18:31:36,Edward,hello to him today we discuss mobile app growth,hello to him today we discuss mobile app growth,NOT_NUMERIC,False,9,47,1.88,1
+2026-06-11T18:31:40,Dan,thanks for saying this up edward,thanks for saying this up edward,3.14,False,6,32,1.91,1
+2026-06-11T18:31:44,Dan,what kind of pricing are we talking about,what kind of pricing are we talking about,3.56,False,8,41,2.25,2
+2026-06-11T18:31:47,Edward,a freemium model works well for the students demographic,a freemium model works well for the students demographic,4.47,False,9,56,2.01,2
+2026-06-11T18:31:52,Dan,we could offer a university email discount,we could offer a university email discount,4.12,False,7,42,1.7,3

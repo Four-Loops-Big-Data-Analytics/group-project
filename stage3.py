@@ -1,8 +1,8 @@
 import csv
 import os
+from config import DATA_DIR
  
-INPUT_FILE = "data/meeting_corrected_mock_data.csv"
-OUTPUT_FILE = "data/meeting_enriched.csv"
+OUTPUT_FILE = DATA_DIR / "meeting_enriched.csv"
  
 def add_derived_columns(input_rows):
     # Track how many turns each speaker has had so far
@@ -45,22 +45,25 @@ def save_to_csv(output_rows):
         "time_taken_sec", "question_flag", "num_words",
         "text_size_chars", "speech_rate_wps", "speaker_turn_id",
     ]
-    # open the file and write all rows
+    # Open the file and write all rows
     with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(output_rows)
  
-def main():
-    if not os.path.exists(INPUT_FILE):
-        print(f"Error: '{INPUT_FILE}' not found. Make sure Stage 2 output exists.")
+def enrich_csv(filename):
+
+    INPUT_FILE = DATA_DIR / filename
+
+    if not INPUT_FILE.exists():
+        print(f"Error: '{filename}' not found. Make sure Stage 2 output exists.")
         return
  
-    with open(INPUT_FILE, encoding="utf-8") as f:
+    with open(INPUT_FILE, "r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         input_rows = list(reader)
  
-    print(f"Loaded {len(input_rows)} rows from '{INPUT_FILE}'.")
+    print(f"Loaded {len(input_rows)} rows from '{filename}'.")
  
     output_rows = add_derived_columns(input_rows)
     total = len(output_rows)
@@ -69,6 +72,3 @@ def main():
     print(f"Enriched CSV saved to '{OUTPUT_FILE}'.")
     print(f"{total} rows processed.")
     print(f"Columns added: question_flag, num_words, text_size_chars, speech_rate_wps, speaker_turn_id")
- 
-if __name__ == "__main__":
-    main()

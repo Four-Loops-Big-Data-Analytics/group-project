@@ -3,11 +3,12 @@ from google import genai
 import csv
 from dotenv import load_dotenv
 import time
+from config import DATA_DIR
+
+OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
 
 load_dotenv()
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-OUTPUT_FILE = "data/meeting_corrected.csv"
 
 # limit to 5 calls per minute and 20 per day
 MODEL_NAME_1 = "gemini-2.5-flash"
@@ -44,11 +45,11 @@ def csv_corrected_heading():
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
 # changed so you can pass in filepath - edward
-def record_corrected_lines(filepath):
+def record_corrected_lines(input_file):
 
     csv_corrected_heading()
     
-    with open(filepath, encoding="utf-8") as file:
+    with open(DATA_DIR / input_file, encoding="utf-8") as file:
             reader_csv = csv.DictReader(file, delimiter=',')
             count = 1
             corrected_lines = 0
@@ -56,7 +57,7 @@ def record_corrected_lines(filepath):
                 try:
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
-                    record_correction_row(correct_transcript, line)
+                    record_correction_row(correct_transcript, line, filename)
                     print(f"Line {count} corrected successfully")
                     corrected_lines += 1
                 except Exception as e:
