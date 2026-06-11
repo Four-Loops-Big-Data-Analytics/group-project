@@ -57,7 +57,7 @@ def record_corrected_lines(input_file):
                 try:
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
-                    record_correction_row(correct_transcript, line, filename)
+                    record_correction_row(correct_transcript, line)
                     print(f"Line {count} corrected successfully")
                     corrected_lines += 1
                 except Exception as e:
