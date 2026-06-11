@@ -5,18 +5,21 @@ import wave
 from datetime import datetime, timedelta
 from vosk import Model, KaldiRecognizer
 
-
+# Vosk model path and audio settings
 MODEL_PATH = "vosk-model-en-us-0.22-lgraph"
 SAMPLE_RATE = 16000
+
+# File paths for recordings input and raw file output
 RECORDINGS_FOLDER = "recordings"
 OUTPUT_FILE = "data/meeting_raw_mock_data.csv"
 
-
+# Extracts speaker name from filename e.g. '01_dan.wav' -> 'Dan'.
+# Function assumes the format is 'xx_name.wav' (xx is a number to identify order to process and can sort recordings appropriately).
 def get_speaker_name(filename):
     name = filename.replace(".wav", "").split("_", 1)[1]
     return name.title()
 
-
+# Transcribes a single .wav file with Vosk and returns a list of (text, elapsed) tuples for each sentence.
 def transcribe_file(filepath, model):
     wf = wave.open(filepath, "rb")
 
@@ -31,6 +34,7 @@ def transcribe_file(filepath, model):
         if len(data_chunk) == 0:
             break
 
+        # Tracks position in the audio file to calculate elapsed time for each sentence.
         current_time_seconds = wf.tell() / SAMPLE_RATE
 
         if recognizer.AcceptWaveform(data_chunk):
@@ -42,6 +46,7 @@ def transcribe_file(filepath, model):
                 sentences.append((text, elapsed))
                 sentence_start = current_time_seconds
 
+    # Processes any remaining audio after the loop to capture the final sentence if it exists.
     final_result = json.loads(recognizer.FinalResult())
     final_text = final_result.get("text", "")
     if final_text:
@@ -51,15 +56,17 @@ def transcribe_file(filepath, model):
     wf.close()
     return sentences
 
-
+# Processes all .wav files in the recordings folder and saves raw data to csv.
 def transcribe_from_files():
 
     recording_files = sorted(os.listdir(RECORDINGS_FOLDER))
 
+    # Checks if there are any files in the recordings folder and prints a message if not.
     if not recording_files:
         print(f"No files found in '{RECORDINGS_FOLDER}' folder. Please add .wav files and try again.")
         return
-
+    
+    # Validates that all files in the recordings folder are .wav files before processing.
     for recording_file in recording_files:
         if not recording_file.endswith(".wav"):
             print(f"Error: '{recording_file}' is not a .wav file. All files must be .wav")
@@ -94,8 +101,6 @@ def transcribe_from_files():
     print(f"Meeting finished! {row_count} rows saved.")
     print(f"CSV saved to: {OUTPUT_FILE}")
 
+    # Checks if the number of rows is less than 25 and prints a warning if so.
     if row_count < 25:
         print(f"\nWarning: You have {row_count} row(s) but need at least 25.")
-
-if __name__ == "__main__":
-    transcribe_from_files()
