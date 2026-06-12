@@ -55,6 +55,8 @@ def analyse_csv(filename):
 
     generate_report(output)
     
+    print(f"Successfully saved output of analysis to {OUTPUT_FILE}.")
+    
 def generate_report(output_list):
     with open(OUTPUT_FILE, "w", encoding="utf-8", newline="") as file:
         headers = ["Metric", "Result"]
