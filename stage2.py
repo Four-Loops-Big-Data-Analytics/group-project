@@ -1,5 +1,6 @@
 import os
 from google import genai
+from google.genai import types
 import csv
 from dotenv import load_dotenv
 import time
@@ -22,11 +23,6 @@ time_sleep_2 = 5
 # MODEL_NAME_3 = 
 # time_sleep_3 = 
 # This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
-
-INPUT_FILE = "data/meeting_raw_mock_data.csv"
-OUTPUT_FILE = "data/meeting_corrected_mock_data.csv"
-
-
 
 def ask_gemini(transcript):
     prompt = (
@@ -72,7 +68,7 @@ def record_corrected_lines(filename):
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
                     record_correction_row(correct_transcript, line)
-                    print(f"Line {count} corrected succesfully")
+                    print(f"Line {count} corrected successfully")
                     corrected_lines += 1
 
                 except Exception as e:
@@ -85,5 +81,5 @@ def record_corrected_lines(filename):
                 # Had to set a timer for the calls per minute
                 time.sleep(time_sleep_2)
 
-    print(f"Process completed, {corrected_lines} lines corrected succesfully")
+    print(f"Process completed, {corrected_lines} lines corrected successfully")
     print()
