@@ -3,3 +3,4 @@ sounddevice>=0.4
 google-genai
 python-dotenv
 pandas>=2.0
+tabulate

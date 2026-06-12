@@ -19,8 +19,9 @@ def log_and_report(logs_list):
             print(log)
             file.write(f"{log}\n")
 
-
 def validate_csv(filename):
+
+    print(f"Validating {filename}...")
 
     with open(DATA_DIR / filename, "r", newline="", encoding="utf-8") as file:
 
@@ -64,3 +65,5 @@ def validate_csv(filename):
             report_output.append("No empty cells found.")
 
         log_and_report(report_output)
+
+        print(f"Performed validation of {filename} and saved results to {REPORT_FILE}.")
