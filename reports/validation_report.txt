@@ -1,3 +1,2 @@
-Error on line 2, cell time_taken_sec: NOT_NUMERIC is not numeric or not greater than zero.
 CSV contains insufficient rows (less than 25).
 No empty cells found.

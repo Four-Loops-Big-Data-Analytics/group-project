@@ -4,10 +4,9 @@ import os
 import wave
 from datetime import datetime, timedelta
 from vosk import Model, KaldiRecognizer
-from config import RECORDINGS_DIR, DATA_DIR
+from config import RECORDINGS_DIR, DATA_DIR, MODEL_PATH
 from pathlib import Path
 
-MODEL_PATH = "vosk-model-en-us-0.22-lgraph"
 SAMPLE_RATE = 16000
 OUTPUT_FILE = DATA_DIR / "meeting_raw.csv"
 
@@ -62,7 +61,7 @@ def transcribe_from_files(folder: Path):
             print(f"Error: '{recording_file}' is not a .wav file. All files must be .wav")
             return
 
-    model = Model(MODEL_PATH)
+    model = Model(str(MODEL_PATH))
     row_count = 0
     meeting_time = datetime.now()
     output = []

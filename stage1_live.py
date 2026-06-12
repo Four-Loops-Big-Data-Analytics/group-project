@@ -7,14 +7,9 @@ from datetime import datetime
 import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 from pathlib import Path
+from config import DATA_DIR, MODEL_PATH
 
-# builds relative path to output file from script path
-# works irrespective of where you are running from
-SCRIPT_DIR = Path(__file__).resolve().parent
-DATA_DIR = SCRIPT_DIR / "data"
 OUTPUT_FILE = DATA_DIR / "meeting_raw.csv"
-
-MODEL_PATH = "vosk-model-en-us-0.22-lgraph"
 SAMPLE_RATE = 16000
 
 q = queue.Queue()
@@ -30,10 +25,8 @@ def record_and_transcribe():
 
     model = Model(MODEL_PATH)
 
-    # parents=True allows python to build entire folder tree
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     
-    # write headers in fresh file and close immediately
     with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "time_taken_sec"])
@@ -109,6 +102,7 @@ def record_and_transcribe():
                     writer = csv.writer(file)
                     writer.writerows(speaker_buffer)
                 print(f"Successfully saved {len(speaker_buffer)} sentences to disk.")
+                
             pass
 
     print(f"\nMeeting finished! {row_count} rows saved.")

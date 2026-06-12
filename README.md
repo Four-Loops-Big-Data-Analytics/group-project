@@ -1,7 +1,6 @@
-## BDA Group Project
-### Team: Four Loops
-### Big Data Analytics 
+## Big Data Analytics Group Project
 ### Birkbeck University 2026
+### Team: Four Loops
 Four Loops are:  
 Dan Papier  
 Marcos  
