@@ -3,6 +3,7 @@ from stage1_live import record_and_transcribe
 from stage2 import record_corrected_lines
 from stage3 import enrich_csv
 from stage4 import validate_csv
+from stage5 import analyse_csv
 from config import RECORDINGS_DIR
 
 if __name__ == "__main__":
@@ -30,3 +31,5 @@ if __name__ == "__main__":
     enrich_csv("meeting_corrected.csv")
 
     validate_csv("meeting_enriched.csv")
+
+    analyse_csv("meeting_enriched.csv")

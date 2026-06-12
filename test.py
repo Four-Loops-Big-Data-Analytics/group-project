@@ -7,12 +7,12 @@ from config import RECORDINGS_DIR
 
 if __name__ == "__main__":
     
-    # transcribe_from_files(RECORDINGS_DIR)
+    transcribe_from_files(RECORDINGS_DIR)
 
-    # record_corrected_lines("meeting_raw.csv")
+    record_corrected_lines("meeting_raw.csv")
 
-    # enrich_csv("meeting_corrected.csv")
+    enrich_csv("meeting_corrected.csv")
 
-    # validate_csv("meeting_enriched.csv")
+    validate_csv("meeting_enriched.csv")
 
     analyse_csv("meeting_enriched.csv")

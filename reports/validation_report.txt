@@ -1,2 +1,1 @@
-CSV contains insufficient rows (less than 25).
 No empty cells found.

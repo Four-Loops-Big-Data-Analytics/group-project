@@ -22,7 +22,7 @@ def analyse_csv(filename):
     top_questioner = questions_per_speaker.idxmax()
     max_questions = questions_per_speaker.max()
 
-    total_time = df['time_taken_sec'].sum()
+    total_time = df['time_taken_sec'].sum().round(2)
 
     for row in [
         {"Metric":"Most words spoken", "Result":f"{top_speaker}, {max_words} words"},
@@ -36,17 +36,17 @@ def analyse_csv(filename):
 
     avg_wps_per_speaker = df.groupby('name')['speech_rate_wps'].mean().round(2).sort_values(ascending=False)
 
-    for (speaker, avg) in avg_time_per_speaker.items():
+    for i, (speaker, avg) in enumerate(avg_time_per_speaker.items(), start=1):
         output.append(
-            {"Metric":f"Average speaking time", "Result":f"{speaker}, {avg} sec(s)"}
+            {"Metric":f"Average speaking time, rank {i}", "Result":f"{speaker}, {avg} sec(s)"}
         )
 
-    for (speaker, wps) in avg_wps_per_speaker.items():
+    for i, (speaker, wps) in enumerate(avg_wps_per_speaker.items(), start=1):
         output.append(
-            {"Metric":f"Average speech rate", "Result":f"{speaker}, {wps} words/second"}
+            {"Metric":f"Average speech rate, rank {i}", "Result":f"{speaker}, {wps} words/second"}
         )
     
-    time_per_speaker = df.groupby('name')['time_taken_sec'].sum().sort_values(ascending=False)
+    time_per_speaker = df.groupby('name')['time_taken_sec'].sum().round(2).sort_values(ascending=False)
 
     for i, (speaker, time) in enumerate(time_per_speaker.head().items(), start=1):
         output.append(
