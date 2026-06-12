@@ -4,7 +4,7 @@ from stage1_files import transcribe_from_files
 from stage1_live import record_and_transcribe
 from stage2 import record_corrected_lines
 from stage3 import main as enrich
-from stage4 import main as validate_and_analyse
+# from stage4 import main as validate_and_analyse
 
 if __name__ == "__main__":
 
@@ -28,4 +28,4 @@ if __name__ == "__main__":
 
     record_corrected_lines()
     enrich()
-    validate_and_analyse()
+    # validate_and_analyse()

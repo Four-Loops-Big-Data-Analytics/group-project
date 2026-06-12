@@ -85,5 +85,3 @@ def record_corrected_lines():
 
     print(f"Process completed, {corrected_lines} lines corrected succesfully")
     print()
-
-record_corrected_lines()
