@@ -4,9 +4,6 @@ from google.genai import types
 import csv
 from dotenv import load_dotenv
 import time
-from config import DATA_DIR
-
-OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
 
 load_dotenv()
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -23,6 +20,9 @@ time_sleep_2 = 5
 # MODEL_NAME_3 = 
 # time_sleep_3 = 
 # This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
+
+INPUT_FILE = "data/meeting_raw_mock_data.csv"
+OUTPUT_FILE = "data/meeting_corrected_mock_data.csv"
 
 def ask_gemini(transcript):
     prompt = (
@@ -50,14 +50,16 @@ def csv_corrected_heading():
         writer = csv.writer(f)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
-def record_corrected_lines(filename):
+def record_corrected_lines_gemini():
 
     print("Starting correction:")
     print()
 
+    start = time.perf_counter()
+
     csv_corrected_heading()
     
-    with open(DATA_DIR / filename, encoding="utf-8") as file:
+    with open(INPUT_FILE, encoding="utf-8") as file:
             reader_csv = csv.DictReader(file, delimiter=',')
             count = 1
             corrected_lines = 0
@@ -68,7 +70,7 @@ def record_corrected_lines(filename):
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
                     record_correction_row(correct_transcript, line)
-                    print(f"Line {count} corrected successfully")
+                    print(f"Line {count} corrected succesfully")
                     corrected_lines += 1
 
                 except Exception as e:
@@ -80,6 +82,9 @@ def record_corrected_lines(filename):
 
                 # Had to set a timer for the calls per minute
                 time.sleep(time_sleep_2)
-
-    print(f"Process completed, {corrected_lines} lines corrected successfully")
+            
+    end = time.perf_counter()
+    print(f"Process completed, {corrected_lines} lines corrected succesfully")
+    print()
+    print(f"Serial processing time with gemini: {end - start:.2f}s")
     print()

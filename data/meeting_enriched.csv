@@ -1,28 +1,28 @@
 timestamp,name,raw_text_vosk,text,time_taken_sec,question_flag,num_words,text_size_chars,speech_rate_wps,speaker_turn_id
-2026-06-12T18:00:49,Edward,hello to him today we discuss mobile app growth,"Hello. Today, we discuss mobile app growth.",4.78,False,7,43,1.46,1
-2026-06-12T18:00:54,Dan,thanks for saying this up edward,"Thanks for setting this up, Edward.",3.14,False,6,35,1.91,1
-2026-06-12T18:00:57,Aidan,can we talk to students first,Can we talk to students first?,2.84,True,6,30,2.11,1
-2026-06-12T18:01:00,Marcos,i think we need to lower pricing for it'll users,I think we need to lower pricing for IT users.,4.46,False,10,46,2.24,1
-2026-06-12T18:01:04,Dan,what kind of pricing are we talking about,What kind of pricing are we talking about?,3.56,True,8,42,2.25,2
-2026-06-12T18:01:08,Marcos,maybe up freemium model with a cheap premium tier,Maybe up freemium model with a cheap premium tier.,6.31,False,9,50,1.43,2
-2026-06-12T18:01:14,Edward,a freemium model works well for the students demographic,A freemium model works well for the student demographic.,4.47,False,9,56,2.01,2
-2026-06-12T18:01:19,Aidan,exactly they don't have much disposable income,"Exactly, they don't have much disposable income.",3.6,False,7,48,1.94,2
-2026-06-12T18:01:22,Dan,we could offer a university email discount,We could offer a university email discount.,4.12,False,7,43,1.7,3
-2026-06-12T18:01:26,Marcos,that he's a really great idea that,"That he's a really great idea, that.",4.54,False,7,36,1.54,3
-2026-06-12T18:01:31,Edward,how do we actually market to them on campus,How do we actually market to them on campus?,4.01,True,9,44,2.24,3
-2026-06-12T18:01:35,Aidan,we could start a campus ambassador program,We could start a campus ambassador program.,4.12,False,7,43,1.7,3
-2026-06-12T18:01:39,Dan,or run targeted social media ads during exam season,Or run targeted social media ads during exam season.,5.38,False,9,52,1.67,4
-2026-06-12T18:01:44,Marcos,paid ads might be too expensive for us right now,Paid ads might be too expensive for us right now.,5.03,False,10,49,1.99,4
-2026-06-12T18:01:49,Edward,let's stick to organic growth in word of mouth first,Let's stick to organic growth and word of mouth first.,3.75,False,10,54,2.67,4
-2026-06-12T18:01:53,Aidan,campus and buster programs will cost us very little,Campus and Buster programs will cost us very little.,3.69,False,9,52,2.44,4
-2026-06-12T18:01:57,Dan,i could build referral code system into the app settings,I could build a referral code system into the app settings.,4.74,False,11,59,2.32,5
-2026-06-12T18:02:02,Marcos,perfect we leave them points for every successful sign up,"Perfect, we leave them points for every successful sign up.",6.42,False,10,59,1.56,5
-2026-06-12T18:02:08,Edward,what do the points actually get them,What do the points actually get them?,3.11,True,7,37,2.25,5
-2026-06-12T18:02:11,Aidan,the mom's of the premium tier subscription,The moms of the premium tier subscription.,2.84,False,7,42,2.46,5
-2026-06-12T18:02:14,Marcos,that keeps our gaspar and long while growing the user base,That keeps our gaspar and long while growing the user base.,6.59,False,11,59,1.67,6
-2026-06-12T18:02:21,Dan,should we launch an ios and android at the same time,Should we launch an iOS and Android at the same time?,4.65,True,11,53,2.37,6
-2026-06-12T18:02:25,Edward,let's just focus on ios first for the initial beta test,Let's just focus on iOS first for the initial beta test.,5.14,False,11,56,2.14,6
-2026-06-12T18:02:30,Aidan,most students i know use iphones anyway,Most students I know use iPhones anyway.,3.35,False,7,40,2.09,6
-2026-06-12T18:02:34,Marcos,we will save a lot of development time that way,We will save a lot of development time that way.,5.38,False,10,48,1.86,7
-2026-06-12T18:02:39,Dan,sounds good i will update the product roadmap to do,Sounds good. I will update the product roadmap to-do.,4.86,False,9,53,1.85,7
-2026-06-12T18:02:44,Edward,great meeting everyone let's get to work and execute on this,"Great meeting, everyone. Let's get to work and execute on this.",5.24,False,11,63,2.1,7
+2026-06-16T16:30:15,Edward,hello to him today we discuss mobile app growth,"Hello, today we discuss mobile app growth.",4.78,False,7,42,1.46,1
+2026-06-16T16:30:20,Dan,thanks for saying this up edward,"Thanks for saying this, Edward.",3.14,False,5,31,1.59,1
+2026-06-16T16:30:23,Aidan,can we talk to students first,Can we talk to students first?,2.84,True,6,30,2.11,1
+2026-06-16T16:30:25,Marcos,i think we need to lower pricing for it'll users,I Think We Need To Lower Pricing For It Users,4.46,False,10,45,2.24,1
+2026-06-16T16:30:30,Dan,what kind of pricing are we talking about,What kind of pricing are we talking about?,3.56,True,8,42,2.25,2
+2026-06-16T16:30:34,Marcos,maybe up freemium model with a cheap premium tier,Maybe adopt a freemium model with a cheap premium tier.,6.31,False,10,55,1.58,2
+2026-06-16T16:30:40,Edward,a freemium model works well for the students demographic,A free trial model works well for the student's demographic.,4.47,False,10,60,2.24,2
+2026-06-16T16:30:44,Aidan,exactly they don't have much disposable income,"Exactly, they don't have much disposable income.",3.6,False,7,48,1.94,2
+2026-06-16T16:30:48,Dan,we could offer a university email discount,"""We could offer a university email discount.""",4.12,False,7,45,1.7,3
+2026-06-16T16:30:52,Marcos,that he's a really great idea that,"""That he's a really great idea that.""",4.54,False,7,37,1.54,3
+2026-06-16T16:30:57,Edward,how do we actually market to them on campus,"""How do we actually market to them on campus?""",4.01,False,9,46,2.24,3
+2026-06-16T16:31:01,Aidan,we could start a campus ambassador program,We could start a Campus Ambassador Program.,4.12,False,7,43,1.7,3
+2026-06-16T16:31:05,Dan,or run targeted social media ads during exam season,Or Run Targeted Social Media Ads During Exam Season,5.38,False,9,51,1.67,4
+2026-06-16T16:31:10,Marcos,paid ads might be too expensive for us right through,"Paid ads might be too expensive for us, right?",5.03,True,9,46,1.79,4
+2026-06-16T16:31:15,Edward,let's stick to organic growth in word of mouth first,Let's Stick To Organic Growth In Word Of Mouth First,3.75,False,10,52,2.67,4
+2026-06-16T16:31:19,Aidan,campus and buster programs will cost us very little,"""Campus and Buster programs will cost us very little.""",3.69,False,9,54,2.44,4
+2026-06-16T16:31:23,Dan,i could build referral code system into the app settings,I could build a referral code system into the app settings.,4.74,False,11,59,2.32,5
+2026-06-16T16:31:27,Marcos,perfect we leave them points for every successful sign up,"""Perfect, we earn points for every successful signup.""",6.42,False,8,54,1.25,5
+2026-06-16T16:31:34,Edward,what do the points actually get them,What do the points actually get them?,3.11,True,7,37,2.25,5
+2026-06-16T16:31:37,Aidan,the mom's of the premium tier subscription,"""The Mom's Of The Premium Tier Subscription""",2.84,False,7,44,2.46,5
+2026-06-16T16:31:40,Marcos,that keeps our gaspar and long while growing the user base,"""That keeps our Gaspar and along while growing the user base.""",6.59,False,11,62,1.67,6
+2026-06-16T16:31:46,Dan,should we launch an ios and android at the same time,Should we launch an iOS and Android app at the same time?,4.65,True,12,57,2.58,6
+2026-06-16T16:31:51,Edward,let's just focus on ios first for the initial beta test,Let's just focus on iOS first for the initial beta test.,5.14,False,11,56,2.14,6
+2026-06-16T16:31:56,Aidan,most students i know use iphones anyway,Most students I know use iPhones anyway.,3.35,False,7,40,2.09,6
+2026-06-16T16:31:59,Marcos,we will save a lot of development time that way,"""We will save a lot of development time that way.""",5.38,False,10,50,1.86,7
+2026-06-16T16:32:05,Dan,sounds good i will update the product roadmap to do,"Sounds good, I will update the product roadmap to do.",4.86,False,10,53,2.06,7
+2026-06-16T16:32:10,Edward,great meeting everyone let's get to work and execute on this,"Great meeting everyone, let's get to work and execute on this.",5.24,False,11,62,2.1,7
