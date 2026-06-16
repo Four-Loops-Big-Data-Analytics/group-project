@@ -5,6 +5,12 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 import requests
 
+# suggestion: (DATA_DIR is built based on script location, so it 
+# works no matter where you run from) 
+
+# from config import DATA_DIR
+# INPUT_FILE = DATA_DIR / "meeting_raw.csv"
+# OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
 
 INPUT_FILE = "data/meeting_raw.csv"
 OUTPUT_FILE = "data/meeting_corrected.csv"
@@ -16,7 +22,7 @@ OLLAMA_URL = "http://172.23.128.1:11434/api/generate"
 def ask_ollama(transcript):
 
     prompt = (
-        f"""f"Correct only punctuation and obvious speech-to-text errors in this sentence. 
+        f"""Correct only punctuation and obvious speech-to-text errors in this sentence. 
 Do not change, add, or remove any words unless they are clearly a phonetic mishearing. 
 Use standard sentence capitalisation only. 
 Return only the corrected sentence with no quotes or explanation.
@@ -70,7 +76,7 @@ def record_corrected_lines_ollama_parallel():
     
     end = time.perf_counter()
 
-    print(f"Process completed, {count} lines corrected succesfully")
+    print(f"Process completed, {count} lines corrected successfully")
     print()
     print(f"Parallel processing time with ollama: {end - start:.2f}s")
     print()
