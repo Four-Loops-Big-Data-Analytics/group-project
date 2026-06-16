@@ -46,7 +46,7 @@ def csv_corrected_heading():
 
 def record_corrected_lines_ollama_parallel():
 
-    print("Starting correction wth ollama in parallel:")
+    print("Starting parallel correction wth Ollama:")
     print()
 
     start = time.perf_counter()
@@ -78,7 +78,7 @@ def record_corrected_lines_ollama_parallel():
 
 def record_corrected_lines_ollama_serial():
 
-    print("Starting correction with ollama in serial:")
+    print("Starting serial correction with Ollama:")
     print()
     
     start = time.perf_counter()
