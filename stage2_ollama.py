@@ -18,6 +18,8 @@ OUTPUT_FILE = "data/meeting_corrected.csv"
 MODEL_NAME = "qwen2:7b"
 OLLAMA_URL = "http://172.23.128.1:11434/api/generate"
 
+# Edward's url:
+# OLLAMA_URL = "http://localhost:11434/api/generate"
 
 def ask_ollama(transcript):
 
