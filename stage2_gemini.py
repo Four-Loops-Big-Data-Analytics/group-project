@@ -19,7 +19,7 @@ time_sleep_2 = 5
 # If you wish to use another model feel free to chage the model name and time sleep varibles uncomenting and filling the following two lines
 # MODEL_NAME_3 = 
 # time_sleep_3 = 
-# This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
+# This variables are use MODEL_NAME in line 35 and time_sleep in line 84, change them with the new variables
 
 INPUT_FILE = "data/meeting_raw.csv"
 OUTPUT_FILE = "data/meeting_corrected.csv"
