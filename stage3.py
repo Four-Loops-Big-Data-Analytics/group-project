@@ -72,3 +72,5 @@ def enrich_csv(filename):
     print(f"Enriched CSV saved to '{OUTPUT_FILE}'.")
     print(f"{total} rows processed.")
     print(f"Columns added: question_flag, num_words, text_size_chars, speech_rate_wps, speaker_turn_id")
+if __name__ == "__main__":
+    enrich_csv("meeting_corrected_mock_data.csv")
