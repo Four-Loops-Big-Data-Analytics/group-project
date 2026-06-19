@@ -2,7 +2,7 @@
 ### Birkbeck University 2026
 ### Team: Four Loops
 
-Dan Papier | Marcos Soto | Aidan | Edward Emmett
+Dan Papier | Marcos Soto | Aidan Ozdural | Edward Emmett
 
 ---
 
