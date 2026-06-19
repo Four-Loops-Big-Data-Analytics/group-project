@@ -65,6 +65,7 @@ The pipeline will guide you through the options interactively.
 
 ## Stage 1 — Speech Transcription
 
+**transcribe_dir_parallel** Spins up multiple processes to run Vosk audio transcription in parallel. Multithreading is not possible in this case, as Vosk is not thread-safe: a separate instance of the model is required for each process. The user is prompted to select their desired number of cores, otherwise a default value (total available cores - 1) is used. I've used .map() to ensure that transcriptions are returned in the correct order. Parallelism should greatly speed up the CPU-heavy transcription process and is recommended, especially since recordings do not need to be transcribed sequentially.
 
 ## Stage 2 — AI Correction
 
@@ -80,7 +81,8 @@ We use ThreadPoolExecutor because the Ollama calls are I/O bound — the bottlen
 
 
 ## Stage 4 — Validation
-
+Validated rows are saved to a new file, while errors are written to validation_report.txt.
+Currently, as the file is small, I have chosen to save all valid rows to a list in RAM, which is then dumped to meeting_validated.csv once all checks are performed. This trades memory usage (RAM could)
 
 ## Stage 5 — Analytics
 
