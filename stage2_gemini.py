@@ -19,12 +19,10 @@ time_sleep_2 = 5
 # If you wish to use another model feel free to chage the model name and time sleep varibles uncomenting and filling the following two lines
 # MODEL_NAME_3 = 
 # time_sleep_3 = 
-# This variables are use MODEL_NAME in line 32 and time_sleep in line 65, change them with the new variables
+# This variables are use MODEL_NAME in line 35 and time_sleep in line 84, change them with the new variables
 
-INPUT_FILE = "data/meeting_raw_mock_data.csv"
-OUTPUT_FILE = "data/meeting_corrected_mock_data.csv"
-
-
+INPUT_FILE = "data/meeting_raw.csv"
+OUTPUT_FILE = "data/meeting_corrected.csv"
 
 def ask_gemini(transcript):
     prompt = (
@@ -52,10 +50,12 @@ def csv_corrected_heading():
         writer = csv.writer(f)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
-def record_corrected_lines():
+def record_corrected_lines_gemini():
 
-    print("Starting correction:")
+    print("Starting correction with Gemini:")
     print()
+
+    start = time.perf_counter()
 
     csv_corrected_heading()
     
@@ -82,8 +82,9 @@ def record_corrected_lines():
 
                 # Had to set a timer for the calls per minute
                 time.sleep(time_sleep_2)
-
+            
+    end = time.perf_counter()
     print(f"Process completed, {corrected_lines} lines corrected succesfully")
     print()
-
-record_corrected_lines()
+    print(f"Serial processing time with gemini: {end - start:.2f}s")
+    print()

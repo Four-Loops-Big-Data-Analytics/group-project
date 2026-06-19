@@ -77,7 +77,10 @@ Although Gemini is slower due to API rate limits, it produces higher quality cor
 We use ThreadPoolExecutor because the Ollama calls are I/O bound — the bottleneck is waiting for the network response, not computation. Threads are more efficient than processes for this type of task because they share memory and have less overhead than spawning separate processes.
 
 ## Stage 3 — Data Enrichment
+<<<<<<< HEAD
 Stage 3 takes the corrected transcript produced in stage 2 and enriches it by adding a set of columns (stats) via Python ensuring reproducibility. This results in data/meeting_enriched.csv. The script relies on csv and os modules using csv.DictReader to parse each row as a dictionary rather than a list. More readable as row["name"] returns the speakers name directly rather than row[0] which would require further digging. If the csv is rearranged, a positional index would silently grab the wrong value. A turn_counter dictionary is used to implement speaker_turn_id, holding a separate count per speaker which tracks their turn. For each row, question_flag checks whether a line ends with a question mark; num_words and text_size_chars use split() and len() and speech_rate_wps is calculated by dividing the word count by time_taken_sec, rounded to 2dps.
+=======
+>>>>>>> b87927de2daf3feb6e8b57123a4b5d4dd6372e0b
 
 
 ## Stage 4 — Validation
@@ -93,7 +96,11 @@ Stage 3 takes the corrected transcript produced in stage 2 and enriches it by ad
 
 **Stage 2 (AI correction):** Time complexity is O(N) where N is the number of rows — each row is processed exactly once. Space complexity is O(1) for serial processing since only one row is held in memory at a time. Parallel processing with 3 workers maintains O(N) time complexity but reduces wall-clock time significantly by processing multiple rows concurrently.
 
+<<<<<<< HEAD
 **Stage 3 (Data Enrichment):** Time complexity is O(N) where N is the number of rows with each row being processed once in a single pass. Space complexity is also O(N) since all enriched rows are held in the output_rows list before writing. So memory grows in proportion to the number of rows.
+=======
+**Stage 3 (Data Enrichment):**
+>>>>>>> b87927de2daf3feb6e8b57123a4b5d4dd6372e0b
 
 
 **Stage 4 (Validation):** In stage4.py for example, we attempted to reduce memory usage by streaming the .csv input file line by line and performing all validation checks at once. That is, we only loop through the file once. Log entries and errors are saved to RAM.
