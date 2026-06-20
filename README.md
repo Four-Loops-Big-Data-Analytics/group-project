@@ -104,4 +104,4 @@ Stage 3 takes the corrected transcript produced in stage 2 and enriches it by ad
 **Stage 5 (Analytics):**
 
 **AI Declaration**
-(Aidan)- This project used Claude (Anthropic) to assist with debugging, code development and documentation. See AI Declaration for more details 
+(Aidan)- This project used Claude (Anthropic) to assist with debugging, code development and documentation (stage 3). See AI Declaration for more details 
