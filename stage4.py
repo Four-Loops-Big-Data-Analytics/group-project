@@ -20,9 +20,11 @@ def log_and_report(logs_list):
             print(log)
             file.write(f"{log}\n")
 
-def write_to_csv(output):
+def write_to_csv(output, fieldnames):
     with open(OUTPUT_FILE, "w", encoding="utf-8", newline="") as file:
-        ...
+        writer = csv.DictWriter(file, fieldnames)
+        writer.writeheader()
+        writer.writerows(output)
 
 def validate_csv(filename):
 
@@ -73,21 +75,27 @@ def validate_csv(filename):
                         report_output.append(f"Unable to parse datetime timestamp from {value} (assuming ISO format).")
                         detected_error = True
 
-                if detected_error:
-                    num_broken_rows += 1
-                else:
-                    valid_output.append(row)
-
+            if detected_error:
+                num_broken_rows += 1
+            else:
+                valid_output.append(row)
 
         if row_count < MIN_ROWS:
             report_output.append(f"CSV contains insufficient rows (less than {MIN_ROWS}).")
 
+        if num_broken_rows > 0:
+            report_output.append(f"{num_broken_rows} broken row(s) detected.")
+
         if not report_output:
-            print(f"No errors ")
+            report_output.append(f"No errors detected.")
 
         if not found_missing:
             report_output.append("No empty cells found.")
 
+        write_to_csv(valid_output, fieldnames)
+
+        report_output.append(f"Validated data (with broken rows removed) saved to {OUTPUT_FILE}.")
+        
         log_and_report(report_output)
 
         print(f"Performed validation of {filename} and saved results to {REPORT_FILE}.")

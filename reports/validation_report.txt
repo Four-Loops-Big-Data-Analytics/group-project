@@ -1,1 +1,8 @@
-No empty cells found.
+Missing data on line 2, column name.
+Missing data on line 10, column speaker_turn_id.
+Error on line 13, cell time_taken_sec: seventeen is not numeric or not greater than zero.
+Error on line 21, cell question_flag: blargh is not a boolean.
+Missing data on line 22, column question_flag.
+Error on line 27, cell speaker_turn_id: Nan is not numeric or not greater than zero.
+6 broken row(s) detected.
+Validated data (with broken rows removed) saved to C:\Users\Dell\Desktop\big_data_analytics\group-project\data\meeting_validated.csv.

@@ -27,7 +27,7 @@ def transcribe_file_parallel(filepath):
     recognizer = KaldiRecognizer(worker_model, SAMPLE_RATE)
     sentences = []
     sentence_start = 0.0
-    name = get_speaker_name(str(filepath))
+    name = get_speaker_name(filepath.name)
 
     print(f"Transcribing file {filepath}...")
 
@@ -59,7 +59,7 @@ def transcribe_file_parallel(filepath):
     return sentences
 
 # user can specify max_workers if desired
-def transcribe_dir_parallel(folder: Path, max_workers):
+def transcribe_dir_parallel(folder: Path, max_workers=None):
 
     # default value is dynamically set to number of available cores - 1
     if max_workers is None:
