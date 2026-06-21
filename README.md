@@ -65,6 +65,15 @@ The pipeline will guide you through the options interactively.
 
 ## Stage 1 — Speech Transcription
 
+Stage 1 offers two transcription approaches:
+
+**Audio file based transcription (stage1_files.py):** Processes pre-recorded .wav files from the recordings folder. Speaker names are extracted from filenames using the format 01_name.wav, where the number sets the conversation order. 
+
+A parallel version (stage1_files_parallel.py) is also available as an alternative, using ProcessPoolExecutor to transcribe multiple files concurrently.
+
+**Live microphone transcription (stage1_live.py):** Records speech in real time using sounddevice. When prompted, the user types each speaker's name, the speaker talks and presses Ctrl+C to stop the recording for that speaker. Sentences are written to the CSV once the speaker finishes.
+
+Both of these approaches use the vosk-model-en-us-0.22-lgraph model and the output is saved to data/meeting_raw.csv with columns: timestamp, name, raw_text_vosk, time_taken_sec.
 
 ## Stage 2 — AI Correction
 
@@ -90,7 +99,16 @@ Stage 3 takes the corrected transcript produced in stage 2 and enriches it by ad
 
 ## Complexity Discussion
 
-**Stage 1 (Speech Transcription):** An improved solution could assign multiple threads to calling the Vosk transcription model in parallel.
+**Stage 1 (Speech Transcription):** 
+
+*Audio file based:* Time complexity is O(N × M) where N is the number of audio files and M is the number of frames per file. 
+Space complexity is O(S) where S is the total number of sentences.
+
+*Audio file based parallel:* Time complexity is also O(N × M) for the total work but with parallel it is distributed across multiple processes which makes it faster as it reduces CPU clock time. Processes are used instead of threads because Vosk is not thread-safe and requires a separate model instance per worker. 
+Space complexity increases as each worker loads its own copy of the Vosk model.
+
+*Live microphone:* Time complexity is O(M) where M is the total frames captured from the microphone. 
+Space complexity is O(S) per speaker, as sentences are buffered per speaker and written to CSV after each turn.
 
 **Stage 2 (AI correction):** Time complexity is O(N) where N is the number of rows — each row is processed exactly once. Space complexity is O(1) for serial processing since only one row is held in memory at a time. Parallel processing with 3 workers maintains O(N) time complexity but reduces wall-clock time significantly by processing multiple rows concurrently.
 
@@ -105,3 +123,5 @@ Stage 3 takes the corrected transcript produced in stage 2 and enriches it by ad
 
 **AI Declaration**
 (Aidan)- This project used Claude (Anthropic) to assist with debugging, code development and documentation (stage 3). See AI Declaration for more details 
+
+(Dan) - This project used Claude (Anthropic) to assist with debugging, help understanding other team members code including summarising any changes and documentation.
