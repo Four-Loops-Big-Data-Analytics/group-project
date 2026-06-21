@@ -57,9 +57,11 @@ The pipeline will guide you through the options interactively.
 | `data/meeting_raw.csv` | Raw Vosk transcriptions |
 | `data/meeting_corrected.csv` | AI-corrected transcripts |
 | `data/meeting_enriched.csv` | Dataset with calculated features |
+| `data/meeting_validated.csv` | Cleaned dataset, with broken rows removed |
 | `reports/validation_report.txt` | Validation results |
 | `reports/analytics_report.csv` | Speaking analytics |
 | `reports/analytics_report.md` | Analytics in Markdown format |
+
 
 ---
 
@@ -75,7 +77,7 @@ A parallel version (stage1_files_parallel.py) is also available as an alternativ
 
 Both of these approaches use the vosk-model-en-us-0.22-lgraph model and the output is saved to data/meeting_raw.csv with columns: timestamp, name, raw_text_vosk, time_taken_sec.
 
-**transcribe_dir_parallel** Spins up multiple processes to run Vosk audio transcription in parallel. Multithreading is not possible in this case, as Vosk is not thread-safe: a separate instance of the model is required for each process. The user is prompted to select their desired number of cores, otherwise a default value (total available cores - 1) is used. I've used .map() to ensure that transcriptions are returned in the correct order. Parallelism should greatly speed up the CPU-heavy transcription process and is recommended, especially since recordings do not need to be transcribed sequentially.
+**Parallel transcription from files** Spins up multiple processes to run Vosk audio transcription in parallel. Multithreading is not possible in this case, as Vosk is not thread-safe: a separate instance of the model is required for each process. The user is prompted to select their desired number of cores, otherwise a default value (total available cores - 1) is used. I've used .map() to ensure that transcriptions are returned in the correct order. Parallelism should greatly speed up the CPU-heavy transcription process and is recommended, especially since recordings do not need to be transcribed sequentially.
 
 ## Stage 2 — AI Correction
 
@@ -91,14 +93,12 @@ We use ThreadPoolExecutor because the Ollama calls are I/O bound — the bottlen
 Stage 3 takes the corrected transcript produced in stage 2 and enriches it by adding a set of columns (stats) via Python ensuring reproducibility. This results in data/meeting_enriched.csv. The script relies on csv and os modules using csv.DictReader to parse each row as a dictionary rather than a list. More readable as row["name"] returns the speakers name directly rather than row[0] which would require further digging. If the csv is rearranged, a positional index would silently grab the wrong value. A turn_counter dictionary is used to implement speaker_turn_id, holding a separate count per speaker which tracks their turn. For each row, question_flag checks whether a line ends with a question mark; num_words and text_size_chars use split() and len() and speech_rate_wps is calculated by dividing the word count by time_taken_sec, rounded to 2dps.
 
 
-
 ## Stage 4 — Validation
-Validated rows are saved to a new file, while errors are written to validation_report.txt.
-Currently, as the file is small, I have chosen to save all valid rows to a list in RAM, which is then dumped to meeting_validated.csv once all checks are performed. This trades memory usage (RAM could)
+Validated, complete rows are saved to a new file, while errors are written to validation_report.txt. This ensures that the dataset has 100% density and all data points are valid, before passing it on to analytics. Currently, as the file is small, log entries/errors and cleaned data are stored in RAM and then written to file all at once, which could be an issue given a huge dataset (we could run out of RAM). However, this prevents slow disk write speeds bottle-necking the process. A better solution might yield logs/errors using a generator, then write them to file one at a time (or in batches) in parallel.
 
 ## Stage 5 — Analytics
+Uses the pandas module to perform data analytics. Results are saved to RAM before being written to a .csv file, and more human-readable .md file. Similarly to Stage 4, could overflow RAM given a large enough dataset as analytics are saved to RAM before bein written to file; a generator approach with parallel file writes may be a better approach.
 
----
 
 ## Complexity Discussion
 
@@ -117,14 +117,14 @@ Space complexity is O(S) per speaker, as sentences are buffered per speaker and 
 
 **Stage 3 (Data Enrichment):** Time complexity is O(N) where N is the number of rows with each row being processed once in a single pass. Space complexity is also O(N) since all enriched rows are held in the output_rows list before writing. So memory grows in proportion to the number of rows.
 
-
-
-**Stage 4 (Validation):** In stage4.py for example, we attempted to reduce memory usage by streaming the .csv input file line by line and performing all validation checks at once. That is, we only loop through the file once. Log entries and errors are saved to RAM.
-
+**Stage 4 (Validation):** Memory is O(m + l) where m is the amount of errors detected, plus l being the size of one line of the input csv. Time complexity is (n * l), where l is the number of lines in the input csv, and n the number of columns. I attempted to reduce memory usage by streaming the .csv input file line by line and performing all validation checks at once, thereby looping through the file only once and maintaining O(n * l).
 
 **Stage 5 (Analytics):**
+Similarly to Stage 4, this saves analytics results to RAM before writing them to disk, which could be an issue given a large enough dataset. Pandas defaults to using int64 and float64, so memory usage could be optimised by downcasting to smaller numeric types (if the accuracy tradeoff is considered worthwhile). Otherwise pandas is highly optimised using NumPy and contiguous C-arrays; for example, groupby() plus aggregations like sum() is an O(n) operation (it uses hash tables for faster lookups). Space complexity is O(m + n) where m is the input dataset, and n is the output analytics data.
 
 **AI Declaration**
 (Aidan)- This project used Claude (Anthropic) to assist with debugging, code development and documentation (stage 3). See AI Declaration for more details 
 
 (Dan) - This project used Claude (Anthropic) to assist with debugging, help understanding other team members code including summarising any changes and documentation.
+
+(Edward) - This project used Google Gemini to assist with debugging, help understanding other team members code including summarising any changes and documentation.
