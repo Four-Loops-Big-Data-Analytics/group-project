@@ -7,6 +7,9 @@ from stage3 import enrich_csv
 from stage4 import validate_csv
 from stage5 import analyse_csv
 from config import RECORDINGS_DIR
+import os
+
+MAX_LOCAL_CORES = os.cpu_count() - 1
 
 if __name__ == "__main__":
     
@@ -25,7 +28,7 @@ if __name__ == "__main__":
                 processing = input("If you want parallel processing enter p, else for serial enter s: ").strip().lower()
                 
                 if processing == "p":
-                    num_cores = input("How many cores would you like to use? Enter a number from 1 to 15. Hit enter for default value: ").strip()
+                    num_cores = input(f"How many cores would you like to use? Enter a number from 1 to {MAX_LOCAL_CORES}. \nHit enter for default value (one less than available cores):").strip()
                     
                     if not num_cores:
                         transcribe_dir_parallel(RECORDINGS_DIR)
@@ -33,7 +36,7 @@ if __name__ == "__main__":
                     
                     try:
                         num_cores = int(num_cores)
-                        if 1 <= num_cores <= 15:
+                        if 1 <= num_cores <= MAX_LOCAL_CORES:
                             transcribe_dir_parallel(RECORDINGS_DIR, num_cores)
                             break 
                         else:
@@ -72,17 +75,17 @@ if __name__ == "__main__":
         model = input("If you want to use Gemini enter g, else if you prefer Ollama enter o: ")
 
         if model == "g":
-            record_corrected_lines_gemini()
+            record_corrected_lines_gemini("meeting_raw.csv")
             break
 
         elif model == "o":
             processing = input("If you want parallel processing enter p, else for serial enter s: ")
 
             if processing == "p":
-                record_corrected_lines_ollama_parallel()
+                record_corrected_lines_ollama_parallel("meeting_raw.csv")
                 break
             elif processing == "s":
-                record_corrected_lines_ollama_serial()
+                record_corrected_lines_ollama_serial("meeting_raw.csv")
                 break
             else:
                 print("Invalid choice. Please enter p or s.")

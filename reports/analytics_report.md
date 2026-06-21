@@ -2,7 +2,7 @@
 
 | Metric                        | Result                    |
 |:------------------------------|:--------------------------|
-| Most words spoken             | Edward, 66 words          |
+| Most words spoken             | Marcos, 68 words          |
 | Least words spoken            | Aidan, 43 words           |
 | Most questions                | Dan, 2 question(s)        |
 | Total speaking time           | 120.12 sec(s)             |
@@ -13,7 +13,7 @@
 | Average speech rate, rank 1   | Edward, 2.18 words/second |
 | Average speech rate, rank 2   | Aidan, 2.12 words/second  |
 | Average speech rate, rank 3   | Dan, 2.01 words/second    |
-| Average speech rate, rank 4   | Marcos, 1.73 words/second |
+| Average speech rate, rank 4   | Marcos, 1.78 words/second |
 | Total speaking time, rank 1   | Marcos, 38.73 sec(s)      |
 | Total speaking time, rank 2   | Edward, 30.5 sec(s)       |
 | Total speaking time, rank 3   | Dan, 30.45 sec(s)         |

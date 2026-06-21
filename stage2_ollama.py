@@ -3,17 +3,10 @@ import csv
 from dotenv import load_dotenv
 import time
 from concurrent.futures import ThreadPoolExecutor
-import requests
+import requests 
+from config import DATA_DIR
 
-# suggestion: (DATA_DIR is built based on script location, so it 
-# works no matter where you run from) 
-
-# from config import DATA_DIR
-# INPUT_FILE = DATA_DIR / "meeting_raw.csv"
-# OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
-
-INPUT_FILE = "data/meeting_raw.csv"
-OUTPUT_FILE = "data/meeting_corrected.csv"
+OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
 
 MODEL_NAME = "qwen2:7b"
 OLLAMA_URL = "http://172.23.128.1:11434/api/generate"
@@ -52,8 +45,9 @@ def csv_corrected_heading():
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
 
-def record_corrected_lines_ollama_parallel():
+def record_corrected_lines_ollama_parallel(filename):
 
+    INPUT_FILE = DATA_DIR / filename
     print("Starting parallel correction wth Ollama:")
     print()
 
@@ -84,7 +78,9 @@ def record_corrected_lines_ollama_parallel():
     print()
 
 
-def record_corrected_lines_ollama_serial():
+def record_corrected_lines_ollama_serial(filename):
+    
+    INPUT_FILE = DATA_DIR / filename
 
     print("Starting serial correction with Ollama:")
     print()

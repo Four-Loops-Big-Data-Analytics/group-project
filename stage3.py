@@ -2,7 +2,7 @@ import csv
 import os
 from config import DATA_DIR
  
-OUTPUT_FILE = "data/meeting_enriched.csv"
+OUTPUT_FILE = DATA_DIR / "meeting_enriched.csv"
  
 def add_derived_columns(input_rows):
     # Track how many turns each speaker has had so far
@@ -52,7 +52,9 @@ def save_to_csv(output_rows):
         writer.writerows(output_rows)
  
 def enrich_csv(filename):
+
     INPUT_FILE = DATA_DIR / filename
+    
     if not os.path.exists(INPUT_FILE):
         print(f"Error: '{INPUT_FILE}' not found. Make sure Stage 2 output exists.")
         return

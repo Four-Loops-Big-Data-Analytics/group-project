@@ -4,6 +4,7 @@ from google.genai import types
 import csv
 from dotenv import load_dotenv
 import time
+from config import DATA_DIR
 
 load_dotenv()
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -21,8 +22,7 @@ time_sleep_2 = 5
 # time_sleep_3 = 
 # This variables are use MODEL_NAME in line 35 and time_sleep in line 84, change them with the new variables
 
-INPUT_FILE = "data/meeting_raw.csv"
-OUTPUT_FILE = "data/meeting_corrected.csv"
+OUTPUT_FILE = DATA_DIR / "meeting_corrected.csv"
 
 def ask_gemini(transcript):
     prompt = (
@@ -50,7 +50,9 @@ def csv_corrected_heading():
         writer = csv.writer(f)
         writer.writerow(["timestamp", "name", "raw_text_vosk", "text" ,"time_taken_sec"])
 
-def record_corrected_lines_gemini():
+def record_corrected_lines_gemini(filename):
+
+    INPUT_FILE = DATA_DIR / filename
 
     print("Starting correction with Gemini:")
     print()
