@@ -70,7 +70,7 @@ def record_corrected_lines_gemini():
                     print(f"Correcting line {count}")
                     correct_transcript = ask_gemini(line["raw_text_vosk"])
                     record_correction_row(correct_transcript, line)
-                    print(f"Line {count} corrected succesfully")
+                    print(f"Line {count} corrected successfully")
                     corrected_lines += 1
 
                 except Exception as e:
@@ -84,7 +84,7 @@ def record_corrected_lines_gemini():
                 time.sleep(time_sleep_2)
             
     end = time.perf_counter()
-    print(f"Process completed, {corrected_lines} lines corrected succesfully")
+    print(f"Process completed, {corrected_lines} lines corrected successfully")
     print()
     print(f"Serial processing time with gemini: {end - start:.2f}s")
     print()

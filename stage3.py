@@ -1,7 +1,7 @@
 import csv
 import os
+from config import DATA_DIR
  
-INPUT_FILE = "data/meeting_corrected_mock_data.csv"
 OUTPUT_FILE = "data/meeting_enriched.csv"
  
 def add_derived_columns(input_rows):
@@ -51,7 +51,8 @@ def save_to_csv(output_rows):
         writer.writeheader()
         writer.writerows(output_rows)
  
-def main():
+def enrich_csv(filename):
+    INPUT_FILE = DATA_DIR / filename
     if not os.path.exists(INPUT_FILE):
         print(f"Error: '{INPUT_FILE}' not found. Make sure Stage 2 output exists.")
         return
@@ -69,6 +70,3 @@ def main():
     print(f"Enriched CSV saved to '{OUTPUT_FILE}'.")
     print(f"{total} rows processed.")
     print(f"Columns added: question_flag, num_words, text_size_chars, speech_rate_wps, speaker_turn_id")
- 
-if __name__ == "__main__":
-    main()

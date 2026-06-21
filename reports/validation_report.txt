@@ -1,0 +1,3 @@
+No errors detected.
+No empty cells found.
+Validated data (with broken rows removed) saved to C:\Users\Dell\Desktop\big_data_analytics\group-project\data\meeting_validated.csv.

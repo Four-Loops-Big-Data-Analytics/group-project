@@ -8,13 +8,11 @@ from vosk import Model, KaldiRecognizer
 from config import DATA_DIR, MODEL_PATH
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
+import os
 
 SAMPLE_RATE = 16000
 OUTPUT_FILE = DATA_DIR / "meeting_raw.csv"
 worker_model = None
-
-# recommended: one less than cores on your computer
-MAX_WORKERS = 7
 
 # ProcessPoolExecutor uses this to spin up one Model per process
 def init_worker(filepath: Path):
@@ -29,7 +27,7 @@ def transcribe_file_parallel(filepath):
     recognizer = KaldiRecognizer(worker_model, SAMPLE_RATE)
     sentences = []
     sentence_start = 0.0
-    name = get_speaker_name(str(filepath))
+    name = get_speaker_name(filepath.name)
 
     print(f"Transcribing file {filepath}...")
 
@@ -60,7 +58,14 @@ def transcribe_file_parallel(filepath):
     wf.close()
     return sentences
 
-def transcribe_dir_parallel(folder: Path):
+# user can specify max_workers if desired
+def transcribe_dir_parallel(folder: Path, max_workers=None):
+
+    # default value is dynamically set to number of available cores - 1
+    if max_workers is None:
+        max_workers = max(1, os.cpu_count() - 1)
+
+    print(f"Spinning up {max_workers} processes...")
 
     if not folder.exists() or not folder.is_dir():
         print(f"No directory found at {folder}. Please try again.")
@@ -78,7 +83,7 @@ def transcribe_dir_parallel(folder: Path):
     )
 
     with ProcessPoolExecutor(
-        max_workers=MAX_WORKERS,
+        max_workers=max_workers,
         initializer=init_worker,
         initargs=(MODEL_PATH,)
     ) as executor:
